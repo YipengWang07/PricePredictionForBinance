@@ -44,7 +44,13 @@ class LSTM_Module(nn.Module):
 
     def predict(self, inputs):
         # inputs:List<60, 12>
+        inputs = np.array(inputs, dtype=np.float32)
+        inputs[:, 2] = self.scalar.transform(inputs[:, 2].reshape(-1, 1)).flatten()
+        inputs[:, 3] = self.scalar.transform(inputs[:, 3].reshape(-1, 1)).flatten()
+        inputs[:, 4] = self.scalar.transform(inputs[:, 4].reshape(-1, 1)).flatten()
+        inputs[:, 5] = self.scalar.transform(inputs[:, 5].reshape(-1, 1)).flatten()
         x = (torch.tensor(inputs, dtype=torch.float32).unsqueeze(0))[:, :, :6]    # (1, 60, 6)
+        
         self.model.eval()
         outputs = self.model(x)  # (1, 5, 4)
         output = self.scalar.inverse_transform(outputs[:, :, -1].detach().numpy())  # next five minutes, only output close (1, 5)
@@ -53,6 +59,6 @@ class LSTM_Module(nn.Module):
 
 if __name__ == "__main__":
     mod = LSTM_Module()
-    inputs = [[random.random() for i in range(12)] for j in range(60)]
+    inputs = [[random.randint(40000, 41000) for i in range(12)] for j in range(60)]
     output = mod.predict(inputs)
     print(output)

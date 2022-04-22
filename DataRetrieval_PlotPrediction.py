@@ -272,6 +272,7 @@ def plot_price(data,pred_file,fig,wait):
     plt.xlabel('Time (minutes from now)')
     plt.ylabel('Price')
     plt.legend()
+    plt.grid(True)
     fig.canvas.flush_events()
     plt.pause(60-wait-1)
 

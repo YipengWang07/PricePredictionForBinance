@@ -13,9 +13,9 @@ then it plots the close price in the past 60 minutes and the predicted future cl
 
 ### Adjustable parameters:
 
-input_path(="input/data.csv"): where this script wrtites twitter and Binance data  
+input_path(="input/data.csv"): where this script wrtites twitter and Binance data (The price should be in chronological order from top to bottom, i.e., oldest on the first row and newest on the last row)
 
-output_path(="output/data.csv"): where spark writes predicted price
+output_path(="output/data.csv"): where spark writes predicted price (The price should be in chronological order from top to bottom, i.e., prediction for 1st minute after on the first row and prediction for 5th minute after on the last row)
 
 wait(=5): the seconds needed for spark to predict
 

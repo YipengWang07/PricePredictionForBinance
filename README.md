@@ -10,4 +10,5 @@ input_path(="input/data.csv"): where this script wrtites twitter and Binance dat
 output_path(="output/data.csv"): where spark writes predicted price
 wait(=5): the seconds needed for spark to predict
 
+
 ----------------------------------

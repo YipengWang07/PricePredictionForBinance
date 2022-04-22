@@ -1,8 +1,13 @@
 # PricePredictionForBinance
 
+
+
 # DataRetrieval_PlotPrediction.py:
+
 This script retrieves twitter and Binance data and write it into input_path(default: "input/data.csv") every minute; 
+
 then it waits spark to output the prediction into output_path(default: "output/data.csv"), where the prediction column name should be "close";
+
 then it plots the close price in the past 60 minutes and the predicted future close price in 5 minutes every minute.
 
 Adjustable parameters:

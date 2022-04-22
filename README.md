@@ -11,10 +11,7 @@ then it waits spark to output the prediction into output_path(default: "output/d
 then it plots the close price in the past 60 minutes and the predicted future close price in 5 minutes every minute.
 
 
-
-
-
-Adjustable parameters:
+### Adjustable parameters:
 
 input_path(="input/data.csv"): where this script wrtites twitter and Binance data  
 

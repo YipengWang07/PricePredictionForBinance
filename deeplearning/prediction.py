@@ -43,12 +43,12 @@ class LSTM_Module(nn.Module):
         self.model = pretrain["model_params"]
 
     def predict(self, inputs):
-        # inputs:List<60, 12>
-        inputs = np.array(inputs, dtype=np.float32)
-        inputs[:, 2] = self.scalar.transform(inputs[:, 2].reshape(-1, 1)).flatten()
+        # inputs: 1-D List[60*12]
+        inputs = np.array(inputs, dtype=np.float32).reshape(60, 12)
         inputs[:, 3] = self.scalar.transform(inputs[:, 3].reshape(-1, 1)).flatten()
         inputs[:, 4] = self.scalar.transform(inputs[:, 4].reshape(-1, 1)).flatten()
         inputs[:, 5] = self.scalar.transform(inputs[:, 5].reshape(-1, 1)).flatten()
+        inputs[:, 6] = self.scalar.transform(inputs[:, 6].reshape(-1, 1)).flatten()
         x = (torch.tensor(inputs, dtype=torch.float32).unsqueeze(0))[:, :, :6]    # (1, 60, 6)
         
         self.model.eval()

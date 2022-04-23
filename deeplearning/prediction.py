@@ -39,7 +39,7 @@ class LSTM_Module(nn.Module):
 
     def predict(self, inputs):
         # inputs: 1-D List[60*12]
-        inputs = np.array(inputs, dtype=np.float32).reshape(5, 12)
+        inputs = np.array(inputs, dtype=np.float32).reshape(60, 12)
         inputs[:, 3] = self.scalar.transform(inputs[:, 3].reshape(-1, 1)).flatten()
         inputs[:, 4] = self.scalar.transform(inputs[:, 4].reshape(-1, 1)).flatten()
         inputs[:, 5] = self.scalar.transform(inputs[:, 5].reshape(-1, 1)).flatten()

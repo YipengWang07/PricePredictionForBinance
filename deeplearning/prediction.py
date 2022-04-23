@@ -10,7 +10,6 @@ import tqdm
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-device = "cuda:0" if torch.cuda.is_available() else "cpu"
 random.seed(42)
 np.random.seed(42)
 torch.manual_seed(42)

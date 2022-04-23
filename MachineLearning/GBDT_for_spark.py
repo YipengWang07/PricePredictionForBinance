@@ -32,7 +32,7 @@ class GBDT_Module():
         Predict close price 1~5 minutes in future
 
         :param input_features: the input features of the one sample, it should have length of 12, which gives information about
-                                [open_time, avgwgt, avg, open, high, low, close, volume, quote_asset_volume,
+                                [open_time, wgtavg, avg, open, high, low, close, volume, quote_asset_volume,
                                 number_of_trades, taker_buy_base_asset_volume, taker_buy_quote_asset_volume]
         :return: a list with size 5, value at index 0 represents price 1min later, value at index 1 represents price 2mins later...
         """
@@ -45,7 +45,7 @@ class GBDT_Module():
         Predict close price 1~5 minutes in future
 
         :param history_data: values in the past hour, it should have shape of (60, 12), each row has information about
-                                [open_time, avgwgt, avg, open, high, low, close, volume, quote_asset_volume,
+                                [open_time, wgtavg, avg, open, high, low, close, volume, quote_asset_volume,
                                 number_of_trades, taker_buy_base_asset_volume, taker_buy_quote_asset_volume]
         :return: a list with size 5, value at index 0 represents price 1min later, value at index 1 represents price 2mins later...
         """

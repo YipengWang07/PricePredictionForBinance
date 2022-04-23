@@ -54,6 +54,6 @@ class LSTM_Module(nn.Module):
 
 if __name__ == "__main__":
     mod = LSTM_Module()
-    inputs = [[random.randint(40000, 41000) for i in range(12)] for j in range(60)]
+    inputs = [random.randint(36000, 42000) for j in range(720)]
     output = mod.predict(inputs)
     print(output)

@@ -19,7 +19,7 @@ class GBDT_Module():
         if not model_root_path.endswith("/"): model_root_path = model_root_path + "/"
 
         for i in range(1, self.m + 1):
-            model_full_path = model_root_path + str(i) + "_minutes_later.pkl"
+            model_full_path = model_root_path + "gbdt_" + str(i) + "_minutes_later.pkl"
             # See if the model exist, if not, stop searching
             if not os.path.exists(model_full_path):
                 print("[Warning]: Cannot find model with predict length %d, further searches are ignored." % i)

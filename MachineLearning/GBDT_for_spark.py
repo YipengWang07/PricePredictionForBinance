@@ -4,6 +4,7 @@ import joblib
 import os
 import sys
 
+
 # GBDT module
 class GBDT_Module():
     def __init__(self, model_root_path: str, max_pred_pength: int = 5):
@@ -43,7 +44,6 @@ class GBDT_Module():
     def predict_with_one_hour_data(self, history_data: pd.DataFrame) -> list:
         """
         Predict close price 1~5 minutes in future
-
         :param history_data: values in the past hour, it should have shape of (60, 12), each row has information about
                                 [open_time, wgtavg, avg, open, high, low, close, volume, quote_asset_volume,
                                 number_of_trades, taker_buy_base_asset_volume, taker_buy_quote_asset_volume]
@@ -64,10 +64,35 @@ class GBDT_Module():
 
         return price_pred
 
+    def predict_with_1d_list(self, history_data: list) -> list:
+        """
+        Predict close price 1~5 minutes in future
+
+        :param history_data: values in the past hour, its length is 720, containing 60 samples as each sample has 12 features, the features are
+                                [open_time, wgtavg, avg, open, high, low, close, volume, quote_asset_volume,
+                                number_of_trades, taker_buy_base_asset_volume, taker_buy_quote_asset_volume]
+        :return: a list with size 5, value at index 0 represents price 1min later, value at index 1 represents price 2mins later...
+        """
+        history_data_array = np.asarray(history_data).reshape(-1, 12)
+        weights = [(self.m - i) / np.sum(np.arange(self.m + 1)) for i in range(self.m)]
+        price_pred = []
+
+        for i in range(self.m):
+            cur_sum, cur_portion = 0, 0
+            for j in range(self.m):
+                if j + self.m - i > 0:
+                    cur_sum += weights[j] * (self.model_list[j].predict(
+                        history_data_array[-((j + self.m) - i), 1:].reshape(1, -1))[0] +
+                                             float(history_data_array[-((j + self.m) - i)][6]))
+                    cur_portion += weights[j]
+            price_pred.append(cur_sum / cur_portion if cur_portion != 0 else 0)
+
+        return price_pred
+
 
 if __name__ == "__main__":
     # Load the data
-    data_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) + "/Data/BTC-0408-0416.csv"
+    data_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) + "/Data/BTC2.csv"
     # print(data_path)
     BTC_BUSD = pd.read_csv(data_path)
 
@@ -76,13 +101,19 @@ if __name__ == "__main__":
     gbdt = GBDT_Module(model_root_path=models_path)
 
     # Test predict_with_one_sample
-    input_features = list(BTC_BUSD.iloc[-1, :])
-    print(input_features)
-    res1 = gbdt.predict_with_one_sample(input_features)
+    onesample_features = list(BTC_BUSD.iloc[-1, :])
+    print(onesample_features)
+    res1 = gbdt.predict_with_one_sample(onesample_features)
 
     # Test predict_with_history_data
     input_df = BTC_BUSD
     res2 = gbdt.predict_with_one_hour_data(input_df)
 
+    # Test predict_with_1d_list
+    long_list = BTC_BUSD.iloc[-60:, :].values.tolist()
+    long_list = [i for item in long_list for i in item]
+    res3 = gbdt.predict_with_1d_list(long_list)
+
     print("predict_with_one_sample: ", res1)
     print("predict_with_one_hour_data: ", res2)
+    print("predict_with_1d_list: ", res3)

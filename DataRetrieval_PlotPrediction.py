@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 '''
-This script retrieves twitter and Binance data and write it into input_path(default: "input/data.csv") every minute; 
+This script retrieves twitter and Binance data and write it into input_path(default: "input/data.csv") every minute (t min 04 sec);
 then it waits spark to output the prediction into output_path(default: "output/data.csv"), where the prediction column name should be "close";
 then it plots the close price in the past 60 minutes and the predicted future close price in 5 minutes every minute.
 
 Adjustable parameters:
-input_path(="input/data.csv"): where this script wrtites twitter and Binance data  
+input_path(="input/data.csv"): where this script wrtites twitter and Binance data
 output_path(="output/data.csv"): where spark writes predicted price
 wait(=5): the seconds needed for spark to predict
 '''
@@ -255,15 +255,16 @@ def ExtractPrice(t):
 
 
 def Preprocess(t):
-    tweets_raw_file = ExtractTwitter(t)
+    #tweets_raw_file = ExtractTwitter(t)
     pricedf = ExtractPrice(t)
-    data = pd.merge(tweets_raw_file, pricedf, how='inner', on='open_time')
+    data = pricedf.iloc[-60:,:]#pd.merge(tweets_raw_file, pricedf, how='inner', on='open_time')
     return data
 
 
 '''#Part4 Plot Prediction'''
 def plot_price(data,pred_file,fig,wait):
     plt.pause(wait)
+    #print(time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())))
     pred=pd.read_csv(pred_file)
     plt.clf()
     plt.plot(np.arange(-59,1,1),data['close'],label='Past price')
@@ -274,7 +275,8 @@ def plot_price(data,pred_file,fig,wait):
     plt.legend()
     plt.grid(True)
     fig.canvas.flush_events()
-    plt.pause(60-wait-1)
+    #print(time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())))
+    plt.pause(10)
 
 
 """# Part5 Data Streaming"""
@@ -286,10 +288,16 @@ if __name__=='__main__':
     plt.ion()
     fig=plt.figure(num=1,figsize=(10,6))
     while True:
+        now=int(time.strftime('%S', time.localtime(time.time())))
+        if now!=4:
+            time.sleep(0.5)
+            continue
+        #print(time.strftime('%Y-%m-%d %H:%M:%S',time.localtime(time.time())))
         t = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time() - 60 * 60 - 8 * 60 * 60))
-        print(t)
         data = Preprocess(t)
         data.to_csv(input_path, index=False)
+        #print(time.strftime('%Y-%m-%d %H:%M:%S',time.localtime(time.time())))
+        #print(data.iloc[-1,:])
         plot_price(data,output_path,fig,wait)
 
 #Run!

@@ -10,10 +10,6 @@ import tqdm
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-random.seed(42)
-np.random.seed(42)
-torch.manual_seed(42)
-torch.cuda.manual_seed(42)
 
 
 class Model3(nn.Module):

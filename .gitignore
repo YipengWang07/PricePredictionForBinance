@@ -1,1 +1,5 @@
 .idea/
+.ipynb_checkpoints/
+Data/*
+input/*
+MachineLearning/.ipynb_checkpoints/

@@ -1,5 +1,27 @@
-# PricePredictionForBinance
+# Price Prediction For Binance
 
+# online system
+![online system pipeline](./pipeline.png)
+
+Here is the huideline tot reproduce the online prediction pipeline in the local machine. 
+
+1. firstly you need to install JAVA 8 to your local machine so that you can run pyspark. <br />
+mac: https://www.oracle.com/java/technologies/downloads/#java8-mac <br />
+linux: https://www.oracle.com/java/technologies/downloads/#java8-linux <br />
+windows: https://www.oracle.com/java/technologies/downloads/#java8-windows <br />
+
+2. To install all the dependencies in python
+    ```
+    pip install -r requirements.txt
+    ```
+
+3. open the notebook ``twitter_streaming_server.ipynb``, run all the code blocks. In the end you will see `Now listening on port: xxxx`, which means you successfully set up the Twitter streamming service.
+4. open the notebook ``spark_streaming.ipynb``, run all the code blocks. Please remember to set up your JAVA 8 home directory `os.environ["JAVA_HOME"] = "..."` inside one code block. Then you had better wait for 60 minutes for spark to gather sentiment scores of 60 minutes.
+5. To gather trading data from Binance, feed all the features into machine learning models, and visualize the results, just excute the python file below, the visualization would be updated every minute and show the historic price for past 60 minutes and predicted price for the next 5 minutes.
+    ```
+    python main_final.py
+    ```
+![visualization](./visualization.png)
 
 
 ## DataRetrieval_PlotPrediction.py:

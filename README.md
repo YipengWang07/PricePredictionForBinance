@@ -25,10 +25,10 @@ windows: https://www.oracle.com/java/technologies/downloads/#java8-windows <br /
 
 
 
-## Methodologies
-### Machine Learning - Decision Tree Ensembles
+# Methodologies
+## Machine Learning - Decision Tree Ensembles
 Codes implementing decision trees are stored in the folder _MachineLeanring_. There are four main code scripts:  
-&emsp;&emsp;(1) **GBDT_model_ns.ipynb**; (2) **GBDT_model_s.ipynb**; (3) **Xgboost_model_ns.ipynb**; (4) **Xgboost_model_s.ipynb**.  
+&emsp;&emsp;(1) ``GBDT_model_ns.ipynb``; (2) ``GBDT_model_s.ipynb``; (3) ``Xgboost_model_ns.ipynb``; (4) ``Xgboost_model_s.ipynb``.  
 
 The first two scripts build GBDT models, and the other scripts two build Xgboost models. File name ended with "ns" indicates "no shulffling", which means training dataset is not shuffled but directly used in its original time order. File name ended with "s" indicates "shulffling", which means training dataset is shuffled.
 
@@ -43,18 +43,16 @@ grid_search = True    # Optional
 # If gird_search == False, it will go with default hyperparameter combination.
 ```
 
-The script **predict_strategy_compare.ipynb** compares results of different training strategies. Generally, it compares peformance between:
+The script ``predict_strategy_compare.ipynb`` compares results of different training strategies. Generally, it compares peformance between:
 (1) gbdt & xgboost models; (2) predict future price & predict difference between current price and future price; (3) with Twitter data & without Twitter data.
 
-----------------------------------
 
-### Deep Learning - LSTM & Transformer
+## Deep Learning - LSTM & Transformer
 
 Codes implementing LSTM and Transformer models are stored in the folder _deeplearning_.
 
-(1) **LSTM_Transformer.ipynb**: Contains data preprocess & LSTM and Transformer models & whole training and test procedure offline.
+(1) ``LSTM_Transformer.ipynb``: Contains data preprocess & LSTM and Transformer models & whole training and test procedure offline.
 
-(2) **prediction.py**: Contains prediction functions of LSTM and Transformer models for online prediction.
+(2) ``prediction.py``: Contains prediction functions of LSTM and Transformer models for online prediction.
 
-(3) **parameters_twt.pt**, **transformer_twt.pt**: Save pre-trained parameters respectively for LSTM and Transformer models.
-
+(3) ``parameters_twt.pt``, ``transformer_twt.pt``: Save pre-trained parameters respectively for LSTM and Transformer models.

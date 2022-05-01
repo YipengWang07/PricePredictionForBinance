@@ -21,7 +21,7 @@ windows: https://www.oracle.com/java/technologies/downloads/#java8-windows <br /
     ```
     python main_final.py
     ```
-![visualization](./images/visualization.png =100x80)
+![visualization](./images/visualization.png)
 
 
 ## DataRetrieval_PlotPrediction.py:

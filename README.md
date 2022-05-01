@@ -49,9 +49,9 @@ The script **predict_strategy_compare.ipynb** compares results of different trai
 
 Codes implementing LSTM and Transformer models are stored in the folder _deeplearning_.
 
-(1) LSTM_Transformer.ipynb: Contains data preprocess & LSTM and Transformer models & whole training and test procedure offline.
+(1) **LSTM_Transformer.ipynb**: Contains data preprocess & LSTM and Transformer models & whole training and test procedure offline.
 
-(2) prediction.py: Contains prediction functions of LSTM and Transformer models for online prediction.
+(2) **prediction.py**: Contains prediction functions of LSTM and Transformer models for online prediction.
 
-(3) parameters_twt.pt, transformer_twt.pt: Save pre-trained parameters respectively for LSTM and Transformer models.
+(3) **parameters_twt.pt**, **transformer_twt.pt**: Save pre-trained parameters respectively for LSTM and Transformer models.
 

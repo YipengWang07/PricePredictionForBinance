@@ -1,4 +1,4 @@
-# Price Prediction For Binance
+# Real-time Cryptocurrency Price Prediction
 
 # online system
 ![online system pipeline](./images/pipeline.png)

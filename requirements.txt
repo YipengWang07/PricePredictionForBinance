@@ -1,0 +1,16 @@
+nltk
+tweepy
+tweet-preprocessor
+findspark
+pyspark==2.4.8
+pyarrow
+requests
+socket
+json
+numpy
+pandas
+matplotlib
+tqdm
+sklearn
+torch
+joblib

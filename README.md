@@ -44,3 +44,9 @@ The script **predict_strategy_compare.ipynb** compares results of different trai
 (1) gbdt & xgboost models; (2) predict future price & predict difference between current price and future price; (3) with Twitter data & without Twitter data.
 
 ----------------------------------
+
+### Deep Learning - LSTM & Transformer
+Codes implementing LSTM and Transformer models are stored in the folder _deeplearning_.
+(1) LSTM_Transformer.ipynb: Contains data preprocess & LSTM and Transformer models & whole training and test procedure offline.
+(2) Prediction.py: Contains prediction functions of LSTM and Transformer models for online prediction in _main.py_.
+(3) parameters_twt.pt, transformer_twt.pt: Save pre-trained parameters.

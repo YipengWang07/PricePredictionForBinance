@@ -2,7 +2,7 @@
 
 
 
-# DataRetrieval_PlotPrediction.py:
+## DataRetrieval_PlotPrediction.py:
 
 This script retrieves twitter and Binance data and write it into input_path(default: "input/data.csv") every minute; 
 
@@ -29,7 +29,9 @@ Codes implementing decision trees are stored in the folder _MachineLeanring_. Th
 
 The first two scripts build GBDT models, and the other scripts two build Xgboost models. File name ended with "ns" indicates "no shulffling", which means training dataset is not shuffled but directly used in its original time order. File name ended with "s" indicates "shulffling", which means training dataset is shuffled.
 
-In the folder _MachineLeanring_, we have another folder _Models_ that stores trained gbdt models. Xgboost models are not stored as we go with gbdt as our first choice and compare its perfomance with deep learning methods, but you can always train and save xgboost models with the provided code scripts. To train and save models, remember to adjust the following parameters:  
+In the folder _MachineLeanring_, we have another folder _Models_ that stores trained gbdt models. Those models are divided into two sets. One set is trained with twitter data, and the other is trained without twitter data. Only models trained with twitter data are loaded into the price prediction streaming. In other words, model files with format _"gbdt_m_minutes_later.pkl"_ are the most important ones.
+
+Xgboost models are not stored in the folder _Models_ as we go with gbdt as our first choice and compare its perfomance with deep learning methods, but you can always train and save xgboost models with the provided code scripts. To train and save models, remember to adjust the following parameters:  
 ```
 save_model = True
 grid_search = True    # Optional
@@ -41,3 +43,4 @@ grid_search = True    # Optional
 The script **predict_strategy_compare.ipynb** compares results of different training strategies. Generally, it compares peformance between:
 (1) gbdt & xgboost models; (2) predict future price & predict difference between current price and future price; (3) with Twitter data & without Twitter data.
 
+----------------------------------

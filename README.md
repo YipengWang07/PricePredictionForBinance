@@ -1,7 +1,7 @@
 # Price Prediction For Binance
 
 # online system
-![online system pipeline](./pipeline.png)
+![online system pipeline](./images/pipeline.png)
 
 Here is the huideline tot reproduce the online prediction pipeline in the local machine. 
 
@@ -21,7 +21,7 @@ windows: https://www.oracle.com/java/technologies/downloads/#java8-windows <br /
     ```
     python main_final.py
     ```
-![visualization](./visualization.png)
+![visualization](./images/visualization.png)
 
 
 ## DataRetrieval_PlotPrediction.py:

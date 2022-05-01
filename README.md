@@ -56,3 +56,5 @@ Codes implementing LSTM and Transformer models are stored in the folder _deeplea
 (2) ``prediction.py``: Contains prediction functions of LSTM and Transformer models for online prediction.
 
 (3) ``parameters_twt.pt``, ``transformer_twt.pt``: Save pre-trained parameters respectively for LSTM and Transformer models.
+
+## Sample data are in the folder ``data``.

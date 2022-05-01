@@ -3,7 +3,7 @@
 # online system
 ![online system pipeline](./images/pipeline.png)
 
-Here is the huideline tot reproduce the online prediction pipeline in the local machine. 
+Here is the guideline tot reproduce the online prediction pipeline in the local machine. 
 
 1. firstly you need to install JAVA 8 to your local machine so that you can run pyspark. <br />
 mac: https://www.oracle.com/java/technologies/downloads/#java8-mac <br />
